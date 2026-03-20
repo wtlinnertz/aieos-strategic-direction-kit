@@ -25,12 +25,18 @@ tests/                 # Structural integrity checks
 
 ## Artifact Types
 
-This kit produces two artifact types:
+This kit produces five artifact types in two phases:
 
-1. **Strategic Bet Record (SBR)** — A single falsifiable strategic bet with measurable signals and bounded scope
-2. **Portfolio Prioritization Record (PPR)** — A strict-rank-ordered list of active SBRs with trade-off rationale and a capacity cut line
+**Phase 1 — Roadmap:**
+1. **Capability Lifecycle Assessment (CLA)** — Catalogs existing capabilities with lifecycle decisions (invest/maintain/sunset/retire). Entry point for retroactive onboarding of existing products.
+2. **Product Capability Roadmap (PCR)** — Product capabilities sequenced over 1-3 year horizon with dependencies and confidence levels
+3. **Technology Investment Roadmap (TIR)** — Technology investments classified as adopt/hold/retire, aligned to PCR capabilities
 
-Each artifact type has exactly four governing files: spec, template, prompt, validator.
+**Phase 2 — Strategic Bets:**
+4. **Strategic Bet Record (SBR)** — A single falsifiable strategic bet with measurable signals and bounded scope
+5. **Portfolio Prioritization Record (PPR)** — A strict-rank-ordered list of active SBRs with trade-off rationale and a capacity cut line
+
+Each artifact type has exactly four governing files: spec, template, prompt, validator. The Roadmap Phase is optional — skip to SBR if you have a concrete bet that doesn't require roadmap context.
 
 ## Key Rules
 
@@ -45,11 +51,15 @@ Each artifact type has exactly four governing files: spec, template, prompt, val
 ## Artifact Flow
 
 ```
-External inputs → SBR (per bet) → validate → freeze
-                       ↓
-              PPR (ranks all frozen SBRs) → validate → freeze
-                       ↓
-              Above-the-line SBRs → PIK Discovery Intake
+External inputs → [Roadmap Ideation (optional)]
+        ↓
+CLA (catalog existing) → PCR (product roadmap) → TIR (tech roadmap)
+        ↓
+SBR (per bet, from PCR or ad hoc) → validate → freeze
+        ↓
+PPR (ranks all frozen SBRs) → validate → freeze
+        ↓
+Above-the-line SBRs → PIK Discovery Intake
 ```
 
 ## Boundary Contracts

@@ -6,20 +6,38 @@ This playbook defines the end-to-end process for capturing strategic bets and pr
 
 ## Artifact Flow
 
-The Strategic Direction Kit produces two artifact types. SBRs are authored individually per bet. The PPR ranks all active SBRs.
+The Strategic Direction Kit produces five artifact types in two phases. The Roadmap Phase catalogs existing capabilities and plans future direction. The Bet Phase extracts and prioritizes individual strategic bets.
 
 ```
 External Inputs (board direction, market data, IEK feedback, customer signals)
         │
+        ├──── Roadmap Ideation Workshop (optional utility prompt)
+        │
         ▼
 ┌─────────────────────────┐
-│  Strategic Bet Record   │  Step 1: Capture a single bet (per theme)
+│  Capability Lifecycle   │  Step 1: Catalog existing capabilities
+│  Assessment (CLA)       │  author → validate → freeze
+└────────┬────────────────┘
+         ▼
+┌─────────────────────────┐
+│  Product Capability     │  Step 2: Define product roadmap
+│  Roadmap (PCR)          │  generate → validate → freeze
+└────────┬────────────────┘
+         ▼
+┌─────────────────────────┐
+│  Technology Investment   │  Step 3: Define technology roadmap
+│  Roadmap (TIR)          │  generate → validate → freeze
+└────────┬────────────────┘
+         │ PCR "committed" entries become bet candidates
+         ▼
+┌─────────────────────────┐
+│  Strategic Bet Record   │  Step 4: Capture a single bet (per theme)
 │  (SBR)                  │  author → validate → freeze
 └────────┬────────────────┘
          │ (repeat for each bet)
          ▼
 ┌─────────────────────────┐
-│  Portfolio               │  Step 2: Rank all active bets
+│  Portfolio               │  Step 5: Rank all active bets
 │  Prioritization Record  │  author → validate → freeze
 │  (PPR)                  │
 └────────┬────────────────┘
@@ -29,9 +47,120 @@ External Inputs (board direction, market data, IEK feedback, customer signals)
    Intelligence Kit (PIK)
 ```
 
+**Retroactive onboarding:** For existing products entering AIEOS for the first time, start at Step 1 (CLA). You don't need prior AIEOS artifacts — CLA accepts informal inputs (product wiki, feature lists, team knowledge). The CLA catalogs what exists, then PCR and TIR plan what comes next.
+
+**Skipping the Roadmap Phase:** If you already have a concrete bet to evaluate (not derived from roadmap planning), skip directly to Step 4 (SBR). The Roadmap Phase is for organizations planning their portfolio direction, not for individual bets that arrive ad hoc.
+
 ---
 
-## Step 1: Strategic Bet Record (SBR)
+## Utility Prompts
+
+### Roadmap Ideation Workshop
+
+**Prompt:** `aieos-product-intelligence-kit/docs/prompts/ideation-workshop-prompt.md` (§Roadmap-Level Ideation)
+
+**When to use:** Before Step 1 (CLA), when the team needs help imagining the product or technology direction. Uses 7 roadmap-specific techniques (Future-Back Planning, Capability Gap Mapping, Technology Horizon Scan, Competitive Trajectory, Sunset Analysis, Customer Journey Evolution, Platform Leverage Analysis).
+
+**Output:** Roadmap Ideation Record (`docs/sdlc/00-roadmap-ideation.md`) — feeds directly into CLA and PCR creation.
+
+**No AIEOS history required:** 6 of 7 techniques work without prior initiatives.
+
+---
+
+## Phase 1: Roadmap
+
+### Step 1: Capability Lifecycle Assessment (CLA)
+
+**Artifact ID format:** `CLA-{PRODUCT}-{NNN}`
+
+**Inputs:**
+- User-provided capability list (REQUIRED — AI must not invent capabilities)
+- `docs/principles/strategic-direction-principles.md` (organizational policy)
+- Optional: IEK ES files, RRK RHR files, existing product documentation
+- Optional: Roadmap Ideation Record (if roadmap ideation was run)
+
+**Generation:**
+- Use `docs/prompts/cla-prompt.md` in a dedicated AI session
+- The prompt references `docs/specs/cla-spec.md` for content rules
+- The prompt references `docs/artifacts/cla-template.md` for structure
+- The AI structures and assesses the user's capability list — it does not invent capabilities
+- For retroactive onboarding: accept informal inputs (wiki pages, feature lists, dashboards)
+
+**Validation:**
+- In a **separate AI session**, use `docs/validators/cla-validator.md`
+- All 6 hard gates must PASS (including `user_provided_inventory`)
+
+**Freeze:**
+- The product/portfolio owner reviews the validated CLA
+- The owner approves the freeze
+- The CLA is now eligible as input to PCR
+
+**Lifecycle:** Living document. Re-frozen semi-annually, when IEK produces new ES signals, or when material changes occur. Version increments (v1, v2, v3).
+
+---
+
+### Step 2: Product Capability Roadmap (PCR)
+
+**Artifact ID format:** `PCR-{PRODUCT}-{NNN}`
+
+**Precondition:** Frozen CLA exists.
+
+**Inputs:**
+- Frozen CLA (required)
+- Roadmap Ideation Record (optional — if roadmap ideation was run)
+- `docs/principles/strategic-direction-principles.md`
+
+**Generation:**
+- Use `docs/prompts/pcr-prompt.md` in a dedicated AI session
+- Every capability must trace to a CLA entry or a documented new opportunity
+- Capabilities must not be invented without a source
+
+**Validation:**
+- In a **separate AI session**, use `docs/validators/pcr-validator.md`
+- All 6 hard gates must PASS (including `capacity_realistic`)
+
+**Freeze:**
+- The portfolio owner reviews the validated PCR
+- The owner approves the freeze
+- "Committed" entries are eligible for SBR extraction
+
+**Lifecycle:** Re-frozen quarterly during planning cycles.
+
+---
+
+### Step 3: Technology Investment Roadmap (TIR)
+
+**Artifact ID format:** `TIR-{PRODUCT}-{NNN}`
+
+**Precondition:** Frozen PCR exists.
+
+**Inputs:**
+- Frozen PCR (required)
+- Frozen CLA (recommended)
+- Current technology stack documentation
+- `docs/principles/strategic-direction-principles.md`
+- Optional: PINFK PDRs (if any)
+
+**Generation:**
+- Use `docs/prompts/tir-prompt.md` in a dedicated AI session
+- Every investment must trace to a PCR capability or operational need
+- Technology for technology's sake fails the `driver_traced` gate
+
+**Validation:**
+- In a **separate AI session**, use `docs/validators/tir-validator.md`
+- All 5 hard gates must PASS
+
+**Freeze:**
+- The technology owner reviews the validated TIR
+- The owner approves the freeze
+
+**Lifecycle:** Re-frozen annually or when PCR material changes require technology reassessment.
+
+---
+
+## Phase 2: Strategic Bets
+
+### Step 4: Strategic Bet Record (SBR)
 
 **Artifact ID format:** `SBR-{THEME}-{NNN}`
 
@@ -64,7 +193,7 @@ External Inputs (board direction, market data, IEK feedback, customer signals)
 
 ---
 
-## Step 2: Portfolio Prioritization Record (PPR)
+### Step 5: Portfolio Prioritization Record (PPR)
 
 **Artifact ID format:** `PPR-{NNN}`
 
@@ -153,6 +282,9 @@ SDK accepts external inputs informally: board directives, market signals, custom
 
 | Artifact | Freeze Point | What It Unlocks |
 |----------|-------------|-----------------|
+| CLA | After validation PASS + owner approval | PCR generation |
+| PCR | After validation PASS + owner approval | TIR generation + SBR extraction |
+| TIR | After validation PASS + owner approval | PINFK alignment + technology planning |
 | SBR | After validation PASS + sponsor approval | Eligibility for PPR inclusion |
 | PPR | After validation PASS + portfolio owner approval | Handoff of above-the-line bets to PIK |
 
@@ -210,6 +342,9 @@ The Engagement Record (ER) is a project-level artifact that lives in the consumi
 
 | Trigger | ER update |
 |---------|-----------|
+| CLA frozen/revised | Add CLA ID + version to §1a artifact table |
+| PCR frozen/revised | Add PCR ID + version to §1a; note horizon |
+| TIR frozen/revised | Add TIR ID + version to §1a; note horizon |
 | SBR frozen | Add SBR ID to §1a artifact table |
 | PPR frozen | Add PPR ID to §1a; record above/below-the-line status |
 | SBR expired or abandoned | Update §1a status |
