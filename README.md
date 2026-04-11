@@ -2,18 +2,18 @@
 
 An [AIEOS](https://github.com/wtlinnertz/aieos-governance-foundation) kit for governing strategic investment decisions. Layer 1 of the AIEOS system.
 
-## What It Does
+## What it does
 
 Transforms informal strategic intent into falsifiable, measurable bets with explicit prioritization and capacity constraints. Feeds the Product Intelligence Kit (Layer 2) with funded strategic direction.
 
 ## Artifacts
 
-| Artifact | Purpose | Hard Gates |
+| Artifact | Purpose | Hard gates |
 |----------|---------|-----------|
 | **Strategic Bet Record (SBR)** | Captures a single falsifiable bet | 6 (thesis falsifiable, success signal measurable, failure signal defined, time horizon bounded, investment envelope stated, single accountable owner) |
 | **Portfolio Prioritization Record (PPR)** | Ranks all active bets | 5 (strict rank order, trade-off rationale, cut line explicit, capacity not exceeded, review trigger defined) |
 
-## Anti-Bureaucracy Design
+## Anti-bureaucracy design
 
 - **Two artifacts, not five.** SBR + PPR. That's it.
 - **Failure signals are mandatory.** If you can't say what would make you stop, the bet isn't ready.

@@ -41,7 +41,7 @@ Unlike downstream kits where AI generates artifacts from frozen inputs, SDK arti
 2. Load `docs/specs/ppr-spec.md`
 3. Load `docs/artifacts/ppr-template.md`
 4. Load `docs/principles/strategic-direction-principles.md`
-5. Load all frozen SBRs (complete — do not summarize)
+5. Load all frozen SBRs (complete. Do not summarize)
 6. Load available capacity information
 
 **What to expect:** The AI will surface trade-offs and test the consistency of the ranking. It will push back on ties, over-commitment, and vague rationale. The portfolio owner makes the ranking decisions.

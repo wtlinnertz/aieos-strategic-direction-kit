@@ -22,14 +22,14 @@ Do not adopt SDK when:
 The `strategic-direction-principles.md` file captures organizational policy about how strategic decisions are made. Common adaptations:
 
 - **Principle 3 (Strict Prioritization):** Some organizations may need to allow stakeholder negotiation before rank order is finalized. The principle enforces the final output being a strict order, not the process of arriving at it.
-- **Principle 6 (Lean Over Comprehensive):** If the organization requires additional strategic artifacts (e.g., a market analysis record), these should be intake documents that feed SBR generation — not additional governed artifacts.
+- **Principle 6 (Lean Over Comprehensive):** If the organization requires additional strategic artifacts (e.g., a market analysis record), these should be intake documents that feed SBR generation, not additional governed artifacts.
 
 ## Customizing the SBR
 
 The SBR is intentionally minimal. Common adaptations:
 
 - **Executive Sponsor title:** The spec requires a named individual, not a specific title. Use whatever title your organization uses for the person accountable for a strategic bet.
-- **Investment envelope granularity:** Some organizations may want more specific capacity descriptions. The spec allows this — the constraint is that the envelope must not be unbounded.
+- **Investment envelope granularity:** Some organizations may want more specific capacity descriptions. The spec allows this: the constraint is that the envelope must not be unbounded.
 - **Expiration period:** The default is 180 days for unreferenced SBRs. Adjust based on your organization's planning cadence.
 
 ## Customizing the PPR
@@ -41,6 +41,6 @@ The SBR is intentionally minimal. Common adaptations:
 
 If the organization already has a strategic planning process:
 
-1. Map existing outputs to SBR sections — most strategic plans contain theses, goals, and resource allocations that can be structured as SBRs
-2. Do not duplicate — the SBR replaces the strategic planning output, it does not add a layer on top
-3. The PPR replaces the portfolio prioritization meeting output — the meeting still happens, the PPR captures the governed result
+1. Map existing outputs to SBR sections. Most strategic plans contain theses, goals, and resource allocations that can be structured as sbrs
+2. Do not duplicate. The sbr replaces the strategic planning output, it does not add a layer on top
+3. The PPR replaces the portfolio prioritization meeting output. The meeting still happens, the ppr captures the governed result
