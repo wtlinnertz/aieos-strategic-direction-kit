@@ -21,6 +21,20 @@ Transforms informal strategic intent into falsifiable, measurable bets with expl
 - **Signal-driven review.** Re-prioritize when signals warrant it, not when the calendar says so.
 - **180-day expiration.** Unreferenced SBRs expire. No zombie bets.
 
+## When to engage this kit
+
+**Engage when:**
+- Portfolio-level prioritization across competing bets is needed
+- Multiple initiatives are competing for the same capacity
+- Strategic alignment documentation is required for investment decisions
+
+**Skip when:**
+- Initiative direction is already settled
+- Work is an enhancement to an existing bet already in flight
+- An incident or defect is driving the work
+
+**When skipped:** Document justification in the EEK Kit Entry Record (KER) or PIK Discovery Intake.
+
 ## Getting Started
 
 See [`docs/playbook.md`](docs/playbook.md) for the complete process.
