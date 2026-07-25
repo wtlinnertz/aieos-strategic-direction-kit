@@ -5,7 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Artifact ID | PCR-{PRODUCT}-{NNN} |
-| Status | Draft / Validated / Freeze Pending / Frozen |
+| Owner | {owner} |
+| Status | DRAFT |
 | Author | {name} |
 | Roadmap Owner | {single named individual} |
 | Date | {YYYY-MM-DD} |

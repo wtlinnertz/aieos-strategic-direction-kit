@@ -5,7 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Artifact ID | PPR-{NNN} |
-| Status | Draft / Validated / Freeze Pending / Frozen |
+| Owner | {owner} |
+| Status | DRAFT |
 | Author | {name} |
 | Portfolio Owner | {single named individual} |
 | Date | {YYYY-MM-DD} |
