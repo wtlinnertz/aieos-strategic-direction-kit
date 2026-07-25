@@ -5,7 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Artifact ID | TIR-{SCOPE}-{NNN} |
-| Status | Draft / Validated / Freeze Pending / Frozen |
+| Owner | {owner} |
+| Status | DRAFT |
 | Author | {name} |
 | Technology Owner | {single named individual} |
 | Date | {YYYY-MM-DD} |

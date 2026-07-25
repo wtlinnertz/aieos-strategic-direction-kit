@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|-------|
 | Artifact ID | CLA-{PRODUCT}-{NNN} |
-| Status | Draft / Validated / Freeze Pending / Frozen |
+| Status | DRAFT |
 | Author | {name} |
-| Assessment Owner | {single named individual} |
+| Owner | {single named individual} |
 | Date | {YYYY-MM-DD} |
 | Governance Model Version | {from governance-model.md §15} |
 | Spec Version | {from cla-spec.md} |

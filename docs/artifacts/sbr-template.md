@@ -5,7 +5,8 @@
 | Field | Value |
 |-------|-------|
 | Artifact ID | SBR-{THEME}-{NNN} |
-| Status | Draft / Validated / Freeze Pending / Frozen |
+| Owner | {owner} |
+| Status | DRAFT |
 | Author | {name} |
 | Executive Sponsor | {single named individual} |
 | Date | {YYYY-MM-DD} |
